@@ -70,3 +70,6 @@ npm run build
 - 命令：npm i vant
 - 按需引入组件样式
     - 命令：npm i unplugin-vue-components -D
+
+## 安装axios 
+- 命令： npm install axios
