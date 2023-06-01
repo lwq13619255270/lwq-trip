@@ -1,25 +1,37 @@
 <template>
     <div class="city top-page">
-        <!-- 搜索 -->
-        <van-search 
-            shape="round"
-            show-action
-            v-model="searchValue" 
-            placeholder="城市/区域/位置"
-            @cancel="onCancel"
-        />
-        <van-tabs v-model:active="tabActive" color="#ff976a">
-            <template v-for="(item, key, index) in allCities" :key="key">
-                <van-tab :title="item.title"></van-tab>
-            </template>
-        </van-tabs>
+        <div class="top">
+            <!-- 搜索 -->
+            <van-search 
+                shape="round"
+                show-action
+                v-model="searchValue" 
+                placeholder="城市/区域/位置"
+                @cancel="onCancel"
+            />
+            <van-tabs v-model:active="tabActive" color="#ff976a">
+                <template v-for="(item, key, index) in allCities" :key="key">
+                    <van-tab :title="item.title" :name="key"></van-tab>
+                </template>
+            </van-tabs>
+        </div>
+        <div class="content">
+            <!-- 以下切换由于数据太多，导致切换的时候优点卡顿 -->
+           <!-- <city-group :groupData="currentGroup"></city-group> -->
+
+           <!-- 优化方法 -->
+           <template v-for="(value, key, index) in allCities" :key="index">
+                <city-group v-show="tabActive === key" :group-data="value"></city-group>
+           </template>
+        </div>
     </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import useCityStore from '@/stores/modules/city.js'
 import { storeToRefs } from 'pinia'
+import cityGroup from './cpns/city-group.vue';
 
 const searchValue = ref('');
 const router = useRouter();
@@ -29,7 +41,7 @@ const onCancel = () => {
 }
 
 // tab的切换
-const tabActive = ref(0);
+const tabActive = ref();
 
 /**
  * 这个位置发送网络请求有两个缺点
@@ -48,6 +60,20 @@ const tabActive = ref(0);
 const cityStore = useCityStore();
 cityStore.fetchAllCitiesData();
 const { allCities } = storeToRefs(cityStore);
+
+// 获取选中标签后的数据
+const currentGroup = computed(() => allCities.value[tabActive.value])
 </script> 
 <style lang="less" scoped>
+.city {
+    .top {
+        position: relative;
+        z-index: 2;
+    }
+    .content {
+        height: calc(100vh - 98px);
+        overflow: auto;
+    }
+
+}
 </style>
