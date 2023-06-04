@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASE_URL, TOMEOUT } from './config'
-class HYRequest {
+class LWQRequest {
   constructor(baseURL, timeout = 10000) {
     this.instance = axios.create({
       baseURL,
@@ -27,5 +27,5 @@ class HYRequest {
   }
 }
 
-export default new HYRequest(BASE_URL, TOMEOUT)
+export default new LWQRequest(BASE_URL, TOMEOUT)
 

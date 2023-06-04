@@ -1,6 +1,6 @@
 import lwqRequest from '../request'
-export function getCityAll () {
+export function getHotSuggests() {
     return lwqRequest.get({
-        url: '/city/all'
+        url: '/home/hotSuggests'
     })
 }

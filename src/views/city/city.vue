@@ -62,7 +62,7 @@ cityStore.fetchAllCitiesData();
 const { allCities } = storeToRefs(cityStore);
 
 // 获取选中标签后的数据
-const currentGroup = computed(() => allCities.value[tabActive.value])
+// const currentGroup = computed(() => allCities.value[tabActive.value])
 </script> 
 <style lang="less" scoped>
 .city {

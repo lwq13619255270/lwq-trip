@@ -8,8 +8,19 @@
     </div>
 </template>
 <script setup>
+// import { ref } from 'vue';
 import HomeNavBar from './cpns/home-nav-bar.vue'
- import HomeSearchBox from './cpns/home-search-box.vue'
+import HomeSearchBox from './cpns/home-search-box.vue'
+
+// import { getHotSuggests } from '@/service/modules/home'
+
+// 发送网络请求
+// 1、热门建议  - 使用状态管理进行网络请求的管理
+// const hotSuggests = ref([]);
+// getHotSuggests().then(res => {
+//     hotSuggests.value = res.data;
+// })
+
 </script> 
 <style lang="less" scoped>
     .banner {
