@@ -5,13 +5,16 @@
             <img src="@/assets/img/home/banner.webp" alt="">
         </div>
         <home-search-box></home-search-box>
+        <home-categories></home-categories>
+        <home-content></home-content>
     </div>
 </template>
 <script setup>
 // import { ref } from 'vue';
 import HomeNavBar from './cpns/home-nav-bar.vue'
 import HomeSearchBox from './cpns/home-search-box.vue'
-
+import HomeCategories from './cpns/home-categories.vue';
+import HomeContent from './cpns/home-content.vue'
 // import { getHotSuggests } from '@/service/modules/home'
 
 // 发送网络请求
@@ -23,9 +26,13 @@ import HomeSearchBox from './cpns/home-search-box.vue'
 
 </script> 
 <style lang="less" scoped>
-    .banner {
-        img {
-            width: 100%;
+    
+    .home {
+        padding-bottom: 50px;
+        .banner {
+            img {
+                width: 100%;
+            }
         }
     }
    
